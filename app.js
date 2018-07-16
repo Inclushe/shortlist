@@ -16,6 +16,7 @@ app.use(cookieParser())
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'pug')
 app.use(require('stylus').middleware('public'))
+app.use(express.static(path.join(__dirname, 'public')))
 app.use('/', routes)
 app.use((req, res, next) => {
   var err = new Error('Not Found')
@@ -25,10 +26,14 @@ app.use((req, res, next) => {
 app.use((err, req, res, next) => {
   console.log(err.stack)
   res.status(err.status || 500)
-  res.json({'errors': {
-    message: err.message,
-    error: (!isProduction ? err : {})
-  }})
+  if (!isProduction) {
+    res.json({'errors': {
+      message: err.message,
+      error: err
+    }})
+  } else {
+    res.send(err.message)
+  }
 })
 
 module.exports = app
