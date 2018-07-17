@@ -5,8 +5,22 @@ html(lang="en")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
     meta(http-equiv="X-UA-Compatible", content="ie=edge")
     link(rel="stylesheet", href="/stylesheets/main.css")
-    title Document
+    title Shortlist
   body
-    h1 Big boys
-    p TAKE TAKE TAKE TAKE TTTTTTAKE
-    a(href="/url/new") Create a new shortened link
+    .top-container
+      h1 Shortlist
+      h2 Shorten long URLs to a three-word mnemonic.
+    .main-container
+      form(method="POST" action="/url/new" id="URLForm")
+        label(for="url") URL
+        input(type="url" id="url" name="url" placeholder="https://...")
+        input(type="submit" id="submit" value="Shorten")
+      #outputMessage
+        #outputMessageSuccess.hidden
+          p Your mnemonic hash for (<span id="unshortenedURL"></span>) is:
+          h2#outputHash halt-dagger-earmuff
+          p Your mnemonic URL is:
+          h2#outputURL localhost:3000/halt-dagger-earmuff
+        #outputMessageFailure.hidden
+          p#outputError Test
+    script(src="scripts/main.js")

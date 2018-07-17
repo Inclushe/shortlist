@@ -1,2 +1,86 @@
+mainColor = #343332
+
 body
-  font-family: sans-serif
+  margin: 0
+  padding: 0
+  font-family: system-ui, sans-serif
+  background: mainColor
+  color: mainColor
+
+.top-container
+  margin: 0 auto
+  padding: 30px 0
+  width: 100%
+  text-align: center
+  background: mainColor
+  color: white
+  display: flex
+  justify-content: center
+  flex-direction: column
+  h1
+    margin: 0
+    padding: 0
+    font-weight: 300
+    font-size: 44px
+  h2
+    margin: 0
+    margin-top: 16px
+    padding: 0
+    font-weight: 400
+    font-size: 22px
+
+.main-container
+  background: white
+  margin: 0 auto
+  padding: 32px 8px
+  max-width: 800px
+  border-radius: 8px
+  box-shadow: 0 8px 16px alpha(black, 0.4)
+  form
+    display: flex
+    justify-content: space-between
+    align-items: center
+    margin: 0 auto
+    max-width: 700px
+    input[type='url']
+      height: 50px
+      width: 80%
+      margin: 0 10px
+      padding: 0 20px
+      border: 1px solid mainColor
+      border-radius: 4px
+      font-family: inherit
+    input[type='submit']
+      height: 50px
+      width: 150px
+      background: mainColor
+      border: none
+      color: white
+      font-size: 24px
+      border-radius: 4px
+      font-family: inherit
+      cursor: pointer
+      &:hover
+        background: lighten(mainColor, 25)
+      &[disabled]
+        cursor: not-allowed
+        background: #aaa
+
+.hidden
+  display: none
+
+#outputMessage
+  margin-top: 32px
+  text-align: center
+
+#outputMessageFailure
+  color: red
+  font-weight: bold
+
+#unshortenedURL
+  display: inline-block
+  vertical-align: bottom
+  max-width: 200px
+  white-space: nowrap
+  overflow: hidden
+  text-overflow: ellipsis

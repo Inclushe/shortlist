@@ -1,11 +1,16 @@
 module.exports = {
   development: {
-    client: 'mysql',
+    client: 'pg',
     connection: {
       host: process.env.DATABASE_URL,
       user: process.env.DATABASE_USERNAME,
       password: process.env.DATABASE_PASSWORD,
-      database: 'shortlist'
+      database: 'shortlist',
+      ssl: true
     }
+  },
+  production: {
+    client: 'pg',
+    connection: process.env.DATABASE_URL + '?ssl=true'
   }
 }

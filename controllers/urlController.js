@@ -13,7 +13,7 @@ exports.new = (req, res) => {
   res.render('newUrl')
 }
 
-exports.validate = [body('url').isURL()]
+exports.validate = [body('url').isURL().withMessage('Please enter a valid URL.')]
 
 exports.create = (req, res, next) => {
   if (validationResult(req).isEmpty()) {
@@ -32,13 +32,13 @@ exports.create = (req, res, next) => {
       })
       .then(() => {
         var mnemonicURL = req.get('host') + '/' + urlHash.join('-')
-        res.send(`Mnemonic URL: <a href='${mnemonicURL}'>${mnemonicURL}</a>`)
+        res.json({mnemonicHash: urlHash.join('-'), mnemonicURL: mnemonicURL, errors: []})
       })
       .catch((e) => {
         next(e)
       })
   } else {
-    res.render('newUrl', {errors: validationResult(req).array()})
+    res.json({errors: validationResult(req).array()})
   }
 }
 
